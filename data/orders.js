@@ -1,4 +1,4 @@
-import { fetchWithResponse } from "./fetcher"
+import { fetchWithoutResponse, fetchWithResponse } from "./fetcher"
 
 export function getCart() {
 	return fetchWithResponse("cart", {
