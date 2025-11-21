@@ -104,6 +104,7 @@ export function recommendProduct(id, username) {
 }
 
 export function likeProduct(productId) {
+	// use @action(methods=['post'], detail=True)
 	return fetchWithoutResponse(`products/${productId}/like`, {
 		method: "POST",
 		headers: {
