@@ -3,7 +3,7 @@ import Filter from '../../components/filter'
 import Layout from '../../components/layout'
 import Navbar from '../../components/navbar'
 import { ProductCard } from '../../components/product/card'
-import { getProducts } from '../../data/products'
+import { getCategories, getProducts } from '../../data/products'
 
 export default function Products() {
   const [products, setProducts] = useState([])
@@ -62,3 +62,4 @@ Products.getLayout = function getLayout(page) {
     </Layout>
   )
 }
+
