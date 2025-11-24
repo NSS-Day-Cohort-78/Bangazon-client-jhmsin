@@ -31,35 +31,37 @@ export function Detail({ product, like, unlike }) {
 
 	return (
 		<>
-			<Modal
-				setShowModal={setShowModal}
-				showModal={showModal}
-				title="Recommend this product to a user">
-				<Input
-					id="username"
-					label="Enter a username"
-					refEl={usernameEl}>
-					{showError ? (
-						<p className="help is-danger">
-							This user doesn't exist
-						</p>
-					) : (
-						<></>
-					)}
-				</Input>
-				<>
-					<button
-						className="button is-success"
-						onClick={recommendProductEvent}>
-						Recommend Product
-					</button>
-					<button
-						className="button"
-						onClick={() => setShowModal(false)}>
-						Cancel
-					</button>
-				</>
-			</Modal>
+			{
+				<Modal
+					setShowModal={setShowModal}
+					showModal={showModal}
+					title="Recommend this product to a user">
+					<Input
+						id="username"
+						label="Enter a username"
+						refEl={usernameEl}>
+						{showError ? (
+							<p className="help is-danger">
+								This user doesn't exist
+							</p>
+						) : (
+							<></>
+						)}
+					</Input>
+					<>
+						<button
+							className="button is-success"
+							onClick={recommendProductEvent}>
+							Recommend Product
+						</button>
+						<button
+							className="button"
+							onClick={() => setShowModal(false)}>
+							Cancel
+						</button>
+					</>
+				</Modal>
+			}
 			<div className="tile is-ancestor">
 				<div className="tile is-parent">
 					<article className="tile is-child">
