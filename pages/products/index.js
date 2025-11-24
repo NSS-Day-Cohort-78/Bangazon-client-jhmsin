@@ -12,9 +12,12 @@ export default function Products() {
 	const [loadingMessage, setLoadingMessage] = useState("Loading products...")
 	const [locations, setLocations] = useState([])
 	const [categories, setCategories] = useState([])
+	// initial query
+	const [query, setQuery] = useState(`order_by=created_date`)
+	const [isFiltered, setIsFiltered] = useState(false)
 
 	useEffect(() => {
-		getProducts()
+		getProducts(query)
 			.then(data => {
 				if (data) {
 					const locationData = [
@@ -65,13 +68,28 @@ export default function Products() {
 				productCount={products.length}
 				onSearch={searchProducts}
 				locations={locations}
+				reset={query}
+				setIsFiltered={setIsFiltered}
 			/>
 
-			<div className="section ">
-				{categories.map(c => (
-					<Category key={c.id} category={c} products={products} />
-				))}
-			</div>
+			{isFiltered ? (
+				<div className="section">
+					<div className="my-6 has-text-centered">
+						<h2 className="title">Products matching filters</h2>
+					</div>
+					<div className="is-flex  is-flex-wrap-wrap is-justify-content-start">
+						{products.map(product => (
+							<ProductCard product={product} key={product.id} />
+						))}
+					</div>
+				</div>
+			) : (
+				<div className="section ">
+					{categories.map(c => (
+						<Category key={c.id} category={c} products={products} />
+					))}
+				</div>
+			)}
 		</>
 	)
 }
