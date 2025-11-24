@@ -113,17 +113,15 @@ export default function Filter({
 						placeholder="Find a Product"
 						id="name"
 						refEl={refEls.name}
-						addlClass="has-addons"
-						extra={
-							<p className="control">
-								<button
-									className="button is-primary"
-									onClick={filter}>
-									Search
-								</button>
-							</p>
-						}
-					/>
+						addlClass="has-addons">
+						<p className="control">
+							<button
+								className="button is-primary"
+								onClick={filter}>
+								Search
+							</button>
+						</p>
+					</Input>
 				</div>
 			</div>
 			<div className="level-right">
