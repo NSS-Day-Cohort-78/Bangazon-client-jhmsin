@@ -25,7 +25,7 @@ export function AppWrapper({ children }) {
         })
       }
     }
-  }, [token])
+  }, [token, router.pathname])
 
   return (
     <AppContext.Provider value={{ profile, token, setToken, setProfile }}>

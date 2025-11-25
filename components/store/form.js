@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Input } from '../../components/form-elements'
 import CardLayout from '../card-layout'
 
@@ -12,7 +13,12 @@ export default function StoreForm({ nameEl, descriptionEl, saveEvent, title, rou
           type="text"
           placeholder="Store Name"
         />
-        <textarea placeholder="Add a Description..." className="textarea" ref={descriptionEl}></textarea>
+        <textarea 
+          id="description"
+          placeholder="Add a Description..." 
+          className="textarea" 
+          ref={descriptionEl}>
+        </textarea>
       </>
       <>
         <a className="card-footer-item" onClick={saveEvent}>Save</a>
