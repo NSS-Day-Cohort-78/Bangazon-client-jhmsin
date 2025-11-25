@@ -19,56 +19,41 @@ export default function Navbar() {
 		navbar.current.classList.toggle("is-active")
 	}
 
-	const getLoggedInButtons = () => {
-		return (
-			<div className="navbar-item has-dropdown is-hoverable">
-				<a className="navbar-link">
-					<span className="icon">
-						<i className="fas fa-user-circle is-medium"></i>
-					</span>
-				</a>
-				<div className="navbar-dropdown is-right">
-					<Link href="/cart" className="navbar-item">
-						Cart
-					</Link>
-					<Link href="/my-orders" className="navbar-item">
-						My Orders
-					</Link>
-					<Link href="/payments" className="navbar-item">
-						Payment Methods
-					</Link>
-					<Link href="/profile" className="navbar-item">
-						Profile
-					</Link>
-					{profile.store ? (
-						<>
-							<Link
-								href={`/stores/${profile.store.id}`}
-								className="navbar-item">
-								View Your Store
-							</Link>
-							<Link href="/products/new" className="navbar-item">
-								Add a new Product
-							</Link>
-						</>
-					) : (
-						<Link href="/stores/new" className="navbar-item">
-							Interested in selling?
-						</Link>
-					)}
-					<hr className="navbar-divider"></hr>
-					<a
-						className="navbar-item"
-						onClick={() => {
-							localStorage.removeItem("token")
-							setIsLoggedIn(false)
-						}}>
-						Log out
-					</a>
-				</div>
-			</div>
-		)
-	}
+  const getLoggedInButtons = () => {
+    return (
+      <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
+          <span className="icon">
+            <i className="fas fa-user-circle is-medium"></i>
+          </span>
+        </a>
+        <div className="navbar-dropdown is-right">
+          <Link href="/cart" className="navbar-item">Cart</Link>
+          <Link href="/my-orders" className="navbar-item">My Orders</Link>
+          <Link href="/payments" className="navbar-item">Payment Methods</Link>
+          <Link href="/profile" className="navbar-item">Profile</Link>
+          {
+            profile.store?.length > 0 ?
+              <>
+                <Link href={`/stores/${profile.store[0].id}`} className="navbar-item">View Your Store</Link>
+                <Link href="/products/new" className="navbar-item">Add a new Product</Link>
+              </>
+              :
+              <Link href="/stores/new" className="navbar-item">Interested in selling?</Link>
+          }
+          <hr className="navbar-divider"></hr>
+          <a className="navbar-item" onClick={
+            () => {
+              localStorage.removeItem('token')
+              setIsLoggedIn(false)
+            }}
+          >
+            Log out
+          </a>
+        </div>
+      </div>
+    )
+  }
 
 	const getLoggedOutButtons = () => {
 		return (
