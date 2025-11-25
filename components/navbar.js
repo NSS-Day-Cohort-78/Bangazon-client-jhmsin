@@ -33,9 +33,9 @@ export default function Navbar() {
           <Link href="/payments" className="navbar-item">Payment Methods</Link>
           <Link href="/profile" className="navbar-item">Profile</Link>
           {
-            profile.store ?
+            profile.store?.length > 0 ?
               <>
-                <Link href={`/stores/${profile.store.id}`}><a className="navbar-item">View Your Store</a></Link>
+                <Link href={`/stores/${profile.store.id}`} className="navbar-item">View Your Store</Link>
                 <Link href="/products/new" className="navbar-item">Add a new Product</Link>
               </>
               :
