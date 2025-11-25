@@ -17,13 +17,14 @@ export default function NewStore() {
     addStore({
       name: nameEl.current.value,
       description: descriptionEl.current.value
-    }).then((res) => {
+    })
+    .then((res) => {
       setProfile({
         ...profile,
         store: res
-      })
-      router.push(`/stores/${res.id}`)
-    })
+      })  
+    }).then(() => 
+      router.push(`/stores/${profile.store[0].id}`))
   }
 
   return (

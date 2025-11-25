@@ -35,7 +35,7 @@ export default function Navbar() {
           {
             profile.store?.length > 0 ?
               <>
-                <Link href={`/stores/${profile.store.id}`} className="navbar-item">View Your Store</Link>
+                <Link href={`/stores/${profile.store[0].id}`} className="navbar-item">View Your Store</Link>
                 <Link href="/products/new" className="navbar-item">Add a new Product</Link>
               </>
               :

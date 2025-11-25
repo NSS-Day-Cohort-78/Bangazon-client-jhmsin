@@ -14,6 +14,7 @@ export default function StoreForm({ nameEl, descriptionEl, saveEvent, title, rou
           placeholder="Store Name"
         />
         <textarea 
+          id="description"
           placeholder="Add a Description..." 
           className="textarea" 
           ref={descriptionEl}>
