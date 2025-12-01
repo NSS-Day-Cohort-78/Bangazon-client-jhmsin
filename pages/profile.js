@@ -1,14 +1,15 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import CardLayout from "../components/card-layout"
 import Layout from "../components/layout"
 import Navbar from "../components/navbar"
 import { ProductCard } from "../components/product/card"
 import { StoreCard } from "../components/store/card"
 import { useAppContext } from "../context/state"
-import { getUserProfile } from "../data/auth"
+import { getFavoriteSellers, getUserProfile } from "../data/auth"
 
 export default function Profile() {
 	const { profile, setProfile } = useAppContext()
+	const [ sellers, setSellers ] = useState([])
 
 	useEffect(() => {
 		getUserProfile().then(profileData => {
@@ -18,14 +19,22 @@ export default function Profile() {
 		})
 	}, [])
 
+	useEffect(() => {
+		if (profile) {
+			getFavoriteSellers().then(favSellers => {
+				setSellers(favSellers)
+			}
+		)}
+	}, [profile, setSellers])
+
 	return (
 		<>
 			<CardLayout title="Favorite Stores" width="is-full">
 				<div className="columns is-multiline">
-					{profile.favorites?.map(favorite => (
+					{sellers.map(seller => (
 						<StoreCard
-							store={favorite}
-							key={favorite.id}
+							store={seller.seller}
+							key={seller.seller.id}
 							width="is-one-third"
 						/>
 					))}

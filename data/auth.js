@@ -27,3 +27,11 @@ export function getUserProfile() {
 		}
 	})
 }
+
+export function getFavoriteSellers() {
+	return fetchWithResponse("profile/favoritesellers", {
+		headers: {
+			Authorization: `Token ${localStorage.getItem("token")}`
+		}
+	})
+}

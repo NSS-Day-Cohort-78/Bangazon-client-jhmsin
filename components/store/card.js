@@ -2,6 +2,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { getProducts } from "../../data/products"
 import { ProductCard } from "../product/card"
+import { favoriteStore } from "../../data/stores"
 
 export function StoreCard({ store, width = "is-half" }) {
 	const [products, setProducts] = useState([])
@@ -33,11 +34,27 @@ export function StoreCard({ store, width = "is-half" }) {
 
 	const quantitySum = quantity()
 
+	const addToFavoritesEvent = () => {
+		favoriteStore(store.id).then(data => console.log("Response data:", data))
+	}
+
 	return (
 		<div className={`column ${width}`}>
 			<div className="card">
 				<header className="card-header">
 					<p className="card-header-title">{store.name}</p>
+					<article className="is-child is-align-self-center pr-2">
+						<div className="field is-grouped">				
+							<p className="control">
+							<button
+								className="button is-primary"
+								onClick={addToFavoritesEvent}
+								>
+								Add to Favorites
+							</button>
+							</p>
+						</div>
+					</article>
 				</header>
 				<div className="card-content">
 					<div className="content">{store.description}</div>
